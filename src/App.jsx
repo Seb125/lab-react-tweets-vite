@@ -40,7 +40,7 @@ const tweetsArray = [
 function App() {
   return (
     <div className="App">
-      <Tweet />
+      <Tweet tweets={ tweetsArray.slice(0,3) }/>
     </div>
   );
 }

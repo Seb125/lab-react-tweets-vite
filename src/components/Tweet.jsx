@@ -1,39 +1,43 @@
-function Tweet() {
-  return (
-    <div className="tweet">
-      <img
-        src="https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/ih_logo.jpeg"
-        className="profile"
-        alt="profile"
-      />
+import Image from "./ProfileImage";
+import User from "./User";
+import Timestamp from "./Timestamp";
+import Message from "./Message";
+import Actions from "./Actions";
+import { v4 as uuidv4 } from 'uuid';
 
-      <div className="body">
-        <div className="top">
-          <span className="user">
-            <span className="name">Ironhack</span>
-            <span className="handle">@ironhack</span>
-          </span>
-
-          <span className="timestamp">Nov 30, 2020</span>
+function Tweet({tweets}) {
+  
+  console.log(tweets)
+  const renderedTweets = tweets.map(tweet => (
+    <div className="tweet" key={uuidv4()}>
+      <div className="tweet">
+        <Image url={{url: tweet.user.image}}/>
+  
+        <div className="body">
+          <div className="top">
+            <User user={tweet.user} />
+            <Timestamp tweet={tweet} />
+           
+          </div>
+  
+          <Message tweet={tweet} />
+          
+  
+          <Actions />
         </div>
-
-        <p className="message">
-          On December 7th, we will be hosting a #webinar that will introduce you
-          to #SQL! Are you ready? 🚀
-        </p>
-
-        <div className="actions">
-          {/* Font Awesome icons */}
-          <i className="far fa-comment" data-testid="comment-icon"></i>
-          <i className="fas fa-retweet" data-testid="retweet-icon"></i>
-          <i className="far fa-heart" data-testid="heart-icon"></i>
-          <i className="fas fa-share" data-testid="share-icon"></i>
-        </div>
+  
+        <i className="fas fa-ellipsis-h"></i>
       </div>
+      </div>
+  ))
 
-      <i className="fas fa-ellipsis-h"></i>
-    </div>
-  );
-}
+console.log(renderedTweets[0])
+
+  return <>
+    {renderedTweets}
+  </>
+  
+  }
+
 
 export default Tweet;
